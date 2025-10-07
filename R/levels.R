@@ -1,23 +1,22 @@
-# # Set global constants
-# C <- list(
-#   alpha_1 = 0.5,
-#   alpha_2 = 0.7,
-#   t_0 = 200
-# )
-
 # Set simulation levels
 if (cfg$run_sims && Sys.getenv("sim_run") %in% c("first", "")) {
   
   level_sets <- list()
   
-  # Estimation: three models
+  # Estimation: two models
   # Figures: fig_999
   level_sets[["estimation_1"]] <- list(
-    model = c("HH", "HG", "P-ITS")
+    # model = c("NE", "P-ITS"),
+    model = c("HH", "NE", "P-ITS"),
+    time = "continuous",
+    # time = c("continuous", "discrete"),
+    n_sequences = 6,
+    # n_sequences = c(2:10), # 6
+    n_clust_per_seq = 2,
+    # n_clust_per_seq = c(1,2,5), # 1
+    n_ind_per_cell = c(20,200)
   )
   
   level_set <- level_sets[[cfg$sim_level_set]]
-  
-  # if (cfg$sim_level_set=="asdf") { cfg$keep = c(1:3,7:9,16:18,22:24) }
   
 }

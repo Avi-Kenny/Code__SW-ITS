@@ -2,7 +2,7 @@
 .libPaths(c("/home/akenny/R_lib", "/hpc/home/ak811/R_lib", .libPaths()))
 
 # Set packages
-cfg$pkgs <- c("magrittr", "dplyr", "lme4")
+cfg$pkgs <- c("magrittr", "dplyr", "lme4", "steppedwedge")
 cfg$pkgs_nocluster <- c("ggplot2")
 
 # Set cluster config

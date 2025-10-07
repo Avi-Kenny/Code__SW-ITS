@@ -26,7 +26,7 @@ df_plot <- data.frame(
   y = c(rep(y_grid_1, 2), rep(y_grid_2, 2)),
   tx = c(rep(In(x_grid>0.5), 2), rep(0, 2*n)),
   design = rep(rep(c("SW-CRT", "ITS"), each=n), 2),
-  sequence = rep(c("Sequence 1","Sequence 2"), each=2*n)
+  sequence = rep(c("Cluster 1","Cluster 2"), each=2*n)
 )
 
 ggplot(df_plot, aes(x=x, y=y, color=factor(tx))) +
@@ -37,13 +37,13 @@ ggplot(df_plot, aes(x=x, y=y, color=factor(tx))) +
       y = c(c(0.25,0.25,0.75,0.75,0,0.5,0.5,1), rep(0.5,8)),
       tx = c(0,0,1,1,0,0,1,1, rep(0,8)),
       design = rep(rep(c("SW-CRT", "ITS"), each=4), 2),
-      sequence = rep(c("Sequence 1", "Sequence 2"), each=8)
+      sequence = rep(c("Cluster 1", "Cluster 2"), each=8)
     ),
     linewidth = 1.5
   ) +
   facet_grid(rows=dplyr::vars(sequence), cols=dplyr::vars(design)) +
-  scale_color_manual(values=c("orange", "forestgreen")) +
-  labs(color="Treatment") +
+  scale_color_manual(values=c("#E69F00", "#009E73")) +
+  labs(color="Treatment", y="Outcome", x="Time") +
   theme(legend.position="bottom")
 
 
@@ -104,7 +104,7 @@ model2 <- lme4::lmer(y~factor(time)-1+tx+(1|sequence)+(1|rte), data=df_analysis)
 tx_est2 <- summary(model2)$coefficients["tx", "Estimate"]
 print(paste0("Tx effect true: ", tx_eff_true))
 print(paste0("Tx effect est (HH): ", round(tx_est, 1)))
-print(paste0("Tx effect est (HG): ", round(tx_est2, 1)))
+print(paste0("Tx effect est (NE): ", round(tx_est2, 1)))
 
 
 model_its <- lme4::lmer(

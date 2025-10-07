@@ -1,7 +1,9 @@
 # Main config
 cfg <- list(
   run_sims = T,
+  run_analysis = F,
   run_process = F,
+  run_ppt_figures = F,
   sim_which = "estimation",
   sim_level_set = "estimation_1",
   sim_run_or_update = "run",
@@ -28,8 +30,16 @@ source("R/levels.R", local=T)
 # Run simulation
 if (cfg$run_sims) { source("R/run.R", local=T) }
 
+# Run analysis
+if (cfg$run_analysis) { source("R/analysis.R", local=T) }
+
 # Tables and figures
 if (cfg$run_process) {
   source("R/process_sims.R", local=T)
   source("R/process.R", local=T)
+}
+
+# PPT figures
+if (cfg$run_ppt_figures) {
+  source("R/ppt_figures.R", local=T)
 }
